@@ -14,8 +14,25 @@ class Operaciones
     }
 
     function posicion($palabra , $frase){
-        $pos = strpos($frase, 'a', 1);
-        $mensaje = "La palabra se encuentra en la posicion " . $pos;
-        return $mensaje;
+        $lastPos = 0;
+        $positions = array();
+        if (strpos($frase, $palabra) == true) {
+            while (($lastPos = strpos($frase, $palabra, $lastPos))!== false) {
+                $positions[] = $lastPos;
+                $lastPos = $lastPos + strlen($palabra);
+            }
+            foreach ($positions as $pos) {
+                echo "<br><br>La palabra se encuentra en la posicion " . $pos . "." . PHP_EOL;
+            }
+
+        }elseif (strpos($frase, $palabra) == false) echo "<br><br>La frase no contiene la palabra" . PHP_EOL;
+    }
+
+    function sustitucion($sustituir, $sustituta , $frase){
+
+        if (strpos($frase, $sustituir) == true) {
+            $resultado=str_replace ( $sustituir , $sustituta , $frase , $contador);
+            echo "<br><br>La cadena resultante es: " . $resultado . " --> con " . $contador . " reemplazos";
+        }elseif (strpos($frase, $sustituir) == false) echo "<br><br>La frase no contiene la palabra" . PHP_EOL;
     }
 }
