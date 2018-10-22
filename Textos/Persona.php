@@ -6,10 +6,10 @@
  * Time: 8:29
  */
 class Persona{
-    var $nombre;
-    var $apellido;
-    var $telefono;
-    var $id;
+    private $nombre;
+    private $apellido;
+    private $telefono;
+    private $id;
 
     function set_Name($nom){
         $this->nombre=$nom;

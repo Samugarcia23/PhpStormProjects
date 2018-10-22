@@ -22,17 +22,17 @@ class Operaciones
                 $lastPos = $lastPos + strlen($palabra);
             }
             foreach ($positions as $pos) {
-                echo "<br><br>La palabra se encuentra en la posicion " . $pos . "." . PHP_EOL;
+                echo "<br><br>La letra se encuentra en la posicion " . $pos . "." . PHP_EOL;
             }
 
-        }elseif (strpos($frase, $palabra) == false) echo "<br><br>La frase no contiene la palabra" . PHP_EOL;
+        }elseif (strpos($frase, $palabra) == false) echo "<br><br>La frase no contiene la letra." . PHP_EOL;
     }
 
     function sustitucion($sustituir, $sustituta , $frase){
 
         if (strpos($frase, $sustituir) == true) {
-            $resultado=str_replace ( $sustituir , $sustituta , $frase , $contador);
+            $resultado=str_replace($sustituir , $sustituta , $frase , $contador);
             echo "<br><br>La cadena resultante es: " . $resultado . " --> con " . $contador . " reemplazos";
-        }elseif (strpos($frase, $sustituir) == false) echo "<br><br>La frase no contiene la palabra" . PHP_EOL;
+        }elseif (strpos($frase, $sustituir) == false) echo "<br><br>La frase no contiene la letra" . PHP_EOL;
     }
 }

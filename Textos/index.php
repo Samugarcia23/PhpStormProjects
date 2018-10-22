@@ -28,22 +28,38 @@ $id=$persona->get_Id();
     <head><b>Prueba de Clases en PHP</b></head>
 
     <body>
+    <br><br>
 
-        <form action="index.php" method="post">
-            Name: <input type="text" name="name" value="<?php echo $nombre;?>">
+    <form action="index.php" method="post">
+
+                    <!--Se cargan los datos de la persona en el formulario, pasando como valores las variables que contienen los get-->
+
+                    Name: <input type="text" name="name" value="<?php echo $nombre;?>">
+
+            <!--Se llama a la funcion cuentaPalabras pasandole como parametro las variables de persona-->
+
             <b><?php echo "<br><br>Tu nombre tiene ". $operaciones->cuentaPalabras($nombre) . " letras"?><br></b>
+
             <br><br>Apellido: <input type="text" name="apellido" value="<?php echo $apellido;?>">
+
             <b><?php echo "<br><br>Tu apellido tiene ". $operaciones->cuentaPalabras($apellido) . " letras"?><br></b>
+
             <br><br>Telefono: <input type="text" name="telefono" value="<?php echo $telefono;?>">
+
             <b><?php echo "<br><br>Tu telefono tiene ". $operaciones->cuentaPalabras($telefono) . " numeros"?><br></b>
+
             <br><br>DNI: <input type="text" name="id" value="<?php echo $id;?>">
+
             <b><?php echo "<br><br>Tu dni tiene ". $operaciones->cuentaPalabras($id) . " numeros"?><br></b>
 
             <p>-----------------------------------------------------------------------------------</p><br>
 
             <a><b>Buscador de Letras: </b></a> <br><br>
+
             Letra a Buscar: <input type="text" name="txtBuscar">
+
             <input type="submit" name="btnBuscar" value="Buscar" /><br>
+
             <?php
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -62,13 +78,19 @@ $id=$persona->get_Id();
             <p>-----------------------------------------------------------------------------------</p><br>
 
             <a><b>Sustituir Letras: </b></a><br><br>
+
             Letra a sustituir: <input type="text" name="txtSustituir"><br>
+
             <br><br>Letra sustituta: <input type="text" name="txtSustituta"><br>
+
             <br><br>Selecciona un campo para empezar a sustituir:<br>
 
             <br><br><select name="opcion">
+
                 <option value="nom">Nombre</option>
+
                 <option value="ape">Apellido</option>
+
             </select>
 
             <input type="submit" name="btnSustituir" value="Sustituir" /><br>
