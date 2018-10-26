@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="a7136afc-2335-4d0d-9573-6d96eb0d3808" name="vagrant_EquiposBasket" url="http://prueba.devel:8080">
+        <fileTransfer host="127.0.0.1" port="2222" rootFolder="/var/www/prueba.devel" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="2222" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
