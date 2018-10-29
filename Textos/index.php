@@ -32,9 +32,9 @@ $id=$persona->get_Id();
 
     <form action="index.php" method="post">
 
-                    <!--Se cargan los datos de la persona en el formulario, pasando como valores las variables que contienen los get-->
+            <!--Se cargan los datos de la persona en el formulario, pasando como valores las variables que contienen los get-->
 
-                    Name: <input type="text" name="name" value="<?php echo $nombre;?>">
+            Name: <input type="text" name="name" value="<?php echo $nombre;?>">
 
             <!--Se llama a la funcion cuentaPalabras pasandole como parametro las variables de persona-->
 

@@ -10,7 +10,7 @@
         $mostrar = new mostrarEquipos();
         $mostrar->cargarLista();
     ?>
-    <form action="index.php" method="post">
+    <form action="" method="post">
         <input type="submit">
     </form>
 </body>
