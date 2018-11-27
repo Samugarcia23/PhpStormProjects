@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="47b5170d-5a4c-4746-92f3-c5104cf6ee46" name="libros.api" url="http://libros.api:8080">
+        <fileTransfer host="127.0.0.1" port="2222" rootFolder="/var/www/libros.api" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="2222" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

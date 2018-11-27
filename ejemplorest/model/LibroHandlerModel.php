@@ -73,7 +73,7 @@ class LibroHandlerModel
         return $listaLibros;
     }
 
-    public function postLibro($libro){
+    public static function postLibro($libro){
 
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
@@ -84,23 +84,21 @@ class LibroHandlerModel
             . \ConstantesDB\ConsLibrosModel::PAGS . ")"
             ." VALUES (?,?,?)";
 
-        $stmt = mysqli_prepare($query);
-
-        $stmt->bind_param("sss", $_POST['codigo'], $_POST['titulo'], $_POST['numpag']);
-
-        $stmt->execute();
-
         $prep_query = $db_connection->prepare($query);
+
+        $prep_query->bind_param("sss", $_POST['codigo'], $_POST['titulo'], $_POST['numpag']);
 
         $prep_query->execute();
         $listaLibros = array();
 
         $prep_query->bind_result($cod, $tit, $pag);
-        while ($prep_query->fetch()) {
-            $tit = utf8_encode($tit);
-            $libro = new LibroModel($cod, $tit, $pag);
-            $listaLibros[] = $libro;
-        }
+        $tit = utf8_encode($tit);
+        $libro = new LibroModel($cod, $tit, $pag);
+        $listaLibros[] = $libro;
+
+        $db_connection->close();
+
+        return $listaLibros;
 
     }
 
