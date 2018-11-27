@@ -49,13 +49,37 @@ class LibroController extends Controller
         $code = null;
 
         //if the URI refers to a libro entity, instead of the libro collection
-        if (isset($request->getUrlElements()[2])) {
-            $id = $request->getUrlElements()[2];
+        if (isset($request->getUrlElements()[1])) {
+            $libro = $request->getUrlElements()[1];
         }
 
         $listaLibros = LibroHandlerModel::postLibro($libro);
 
         if ($listaLibros != null) {
+            $code = '200';
+
+        }else {
+            $code = '404';
+        }
+
+        $response = new Response($code, null, $listaLibros, $request->getAccept());
+        $response->generate();
+    }
+
+    public function manageDeleteVerb(Request $request)
+    {
+        $filasAfectadas = 0;
+        $response = null;
+        $code = null;
+
+        //if the URI refers to a libro entity, instead of the libro collection
+        if (isset($request->getUrlElements()[2])) {
+            $id = $request->getUrlElements()[2];
+        }
+
+        $listaLibros = LibroHandlerModel::deleteLibro($id);
+
+        if ($filasAfectadas == 1) {
             $code = '200';
 
         }else {

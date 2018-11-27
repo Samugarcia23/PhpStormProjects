@@ -102,6 +102,32 @@ class LibroHandlerModel
 
     }
 
+    public static function deleteLibro($id){
+        $listaLibros = null;
+        $filasAfectadas = 0;
+        $db = DatabaseModel::getInstance();
+        $db_connection = $db->getConnection();
+
+        $valid = self::isValid($id);
+
+        if ($valid === true){
+
+            $query = "DELETE FROM  " . \ConstantesDB\ConsLibrosModel::TABLE_NAME;
+
+            $query = $query . " WHERE " . \ConstantesDB\ConsLibrosModel::COD . " = ?";
+
+            $prep_query = $db_connection->prepare($query);
+            $prep_query->bind_param('s', $id);
+
+            $filasAfectadas = $prep_query->execute();
+
+            $db_connection->close();
+
+        }
+
+        return $filasAfectadas;
+    }
+
 
 
     //returns true if $id is a valid id for a book
