@@ -43,26 +43,22 @@ class LibroController extends Controller
 
     public function managePostVerb(Request $request)
     {
-        $listaLibros = null;
         $libro = null;
         $response = null;
         $code = null;
 
-        //if the URI refers to a libro entity, instead of the libro collection
-        if (isset($request->getUrlElements()[1])) {
-            $libro = $request->getUrlElements()[1];
-        }
+        $libro = $request->getBodyParameters();
 
-        $listaLibros = LibroHandlerModel::postLibro($libro);
+        $filas = LibroHandlerModel::postLibro($libro);
 
-        if ($listaLibros != null) {
+        if ($filas == 1) {
             $code = '200';
 
         }else {
             $code = '404';
         }
 
-        $response = new Response($code, null, $listaLibros, $request->getAccept());
+        $response = new Response($code, null, null, $request->getAccept());
         $response->generate();
     }
 
@@ -77,7 +73,7 @@ class LibroController extends Controller
             $id = $request->getUrlElements()[2];
         }
 
-        $listaLibros = LibroHandlerModel::deleteLibro($id);
+        $filasAfectadas = LibroHandlerModel::deleteLibro($id);
 
         if ($filasAfectadas == 1) {
             $code = '200';
@@ -93,8 +89,39 @@ class LibroController extends Controller
             }
         }
 
-        $response = new Response($code, null, $listaLibros, $request->getAccept());
+        $response = new Response($code, null, null, $request->getAccept());
         $response->generate();
+    }
+
+    public function managePutVerb(Request $request)
+    {
+        $filasAfectadas = 0;
+        $response = null;
+        $code = null;
+
+        if (isset($request->getUrlElements()[2])) {
+            $id = $request->getUrlElements()[2];
+        }
+
+        $listalibros = LibroHandlerModel::putLibro($id);
+
+        if ($filasAfectadas == 1) {
+            $code = '200';
+
+        }else {
+
+            //We could send 404 in any case, but if we want more precission,
+            //we can send 400 if the syntax of the entity was incorrect...
+            if (LibroHandlerModel::isValid($id)) {
+                $code = '404';
+            } else {
+                $code = '400';
+            }
+        }
+
+        $response = new Response($code, null, $filasAfectadas, $request->getAccept());
+        $response->generate();
+
     }
 
 }

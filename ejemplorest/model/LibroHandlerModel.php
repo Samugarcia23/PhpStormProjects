@@ -78,32 +78,24 @@ class LibroHandlerModel
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
-        $query = "INSERT INTO " . \ConstantesDB\ConsLibrosModel::TABLE_NAME . "("
-            . \ConstantesDB\ConsLibrosModel::COD . ","
-            . \ConstantesDB\ConsLibrosModel::TITULO . ","
-            . \ConstantesDB\ConsLibrosModel::PAGS . ")"
-            ." VALUES (?,?,?)";
+        $query = "INSERT INTO libros(titulo, numpag) VALUES (?,?)";
 
         $prep_query = $db_connection->prepare($query);
 
-        $prep_query->bind_param("sss", $_POST['codigo'], $_POST['titulo'], $_POST['numpag']);
+        $prep_query->bind_param("si", $libro->titulo, $libro->numpag);
 
         $prep_query->execute();
-        $listaLibros = array();
 
-        $prep_query->bind_result($cod, $tit, $pag);
-        $tit = utf8_encode($tit);
-        $libro = new LibroModel($cod, $tit, $pag);
-        $listaLibros[] = $libro;
+        $filasAfectadas = $prep_query->affected_rows;
 
         $db_connection->close();
 
-        return $listaLibros;
+        return $filasAfectadas;
 
     }
 
     public static function deleteLibro($id){
-        $listaLibros = null;
+
         $filasAfectadas = 0;
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
@@ -117,7 +109,35 @@ class LibroHandlerModel
             $query = $query . " WHERE " . \ConstantesDB\ConsLibrosModel::COD . " = ?";
 
             $prep_query = $db_connection->prepare($query);
-            $prep_query->bind_param('s', $id);
+            $prep_query->bind_param('i', $id);
+
+            $filasAfectadas = $prep_query->execute();
+
+            $db_connection->close();
+
+        }
+
+        return $filasAfectadas;
+    }
+
+    public static function putLibro($id){
+
+        $filasAfectadas = 0;
+        $db = DatabaseModel::getInstance();
+        $db_connection = $db->getConnection();
+
+        $valid = self::isValid($id);
+
+        if ($valid === true){
+
+            $query = "UPDATE  " . \ConstantesDB\ConsLibrosModel::TABLE_NAME;
+
+            $query = $query . " SET " . \ConstantesDB\ConsLibrosModel::COD . " = ? , " . \ConstantesDB\ConsLibrosModel::TITULO . " = ? , " . \ConstantesDB\ConsLibrosModel::PAGS . " = ? ";
+
+            $query = $query . " WHERE " . \ConstantesDB\ConsLibrosModel::COD . " = ?";
+
+            $prep_query = $db_connection->prepare($query);
+            $prep_query->bind_param('ssis', $id, $tit);
 
             $filasAfectadas = $prep_query->execute();
 
