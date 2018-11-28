@@ -1,0 +1,117 @@
+PUT http://libros.api:8080/libro
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{     "titulo": "La Biblia 2",     "codigo": 14,     "numpag": 205 }
+
+<> 2018-11-28T082008.200.html
+
+###
+
+PUT http://libros.api:8080/libro/14
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{     "titulo": "La Biblia 2",     "codigo": 14,     "numpag": 205 }
+
+<> 2018-11-28T081906.200.html
+
+###
+
+PUT http://libros.api:8080/libro/14
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{     "titulo": "La Biblia 2",     "codigo": 0,     "numpag": 205 }
+
+###
+
+PUT http://libros.api:8080/libro/14
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{     "titulo": "La Biblia 2",     "codigo": 0,     "numpag": 205 }
+
+<> 2018-11-28T081704.200.html
+
+###
+
+PUT http://libros.api:8080/libro/14
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{     "titulo": "La Biblia 2",     "codigo": 0,     "numpag": 205 }
+
+<> 2018-11-28T075816.200.html
+
+###
+
+PUT http://libros.api:8080/libro/14
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{     "titulo": "La Biblia 2",     "codigo": 0,     "numpag": 205 }
+
+<> 2018-11-28T075808.200.html
+
+###
+
+PUT http://libros.api:8080/libro/14
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{     "titulo": "La Biblia 2",     "codigo": 0,     "numpag": 205 }
+
+###
+
+PUT http://libros.api:8080/libro/13
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{     "titulo": "La Biblia 2",     "codigo": 0,     "numpag": 205 }
+
+<> 2018-11-28T073851.200.html
+
+###
+
+PUT http://libros.api:8080/libro/13
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{     "titulo": "La Biblia 2",     "codigo": 0,     "numpag": 205 }
+
+<> 2018-11-28T073820.200.html
+
+###
+
+PUT http://libros.api:8080/libro/13
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{     "titulo": "La Biblia 2",     "codigo": 0,     "numpag": 205 }
+
+<> 2018-11-28T073758.200.html
+
+###
+
+PUT http://libros.api:8080/libro/13
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{     "titulo": "La Biblia 2",     "codigo": 0,     "numpag": 205 }
+
+<> 2018-11-28T073717.200.html
+
+###
+

@@ -95,31 +95,34 @@ class LibroController extends Controller
 
     public function managePutVerb(Request $request)
     {
-        $filasAfectadas = 0;
+        $id = null;
         $response = null;
         $code = null;
+        $libro = null;
+        $codigo = null;
+        $numpag = null;
+        $titulo = null;
 
         if (isset($request->getUrlElements()[2])) {
             $id = $request->getUrlElements()[2];
         }
 
-        $listalibros = LibroHandlerModel::putLibro($id);
-
-        if ($filasAfectadas == 1) {
-            $code = '200';
-
-        }else {
-
-            //We could send 404 in any case, but if we want more precission,
-            //we can send 400 if the syntax of the entity was incorrect...
-            if (LibroHandlerModel::isValid($id)) {
-                $code = '404';
-            } else {
-                $code = '400';
-            }
+        if ($request->getBodyParameters() != null) {
+            $titulo = $request->getBodyParameters()->titulo;
+            $codigo = $request->getBodyParameters()->codigo;
+            $numpag = $request->getBodyParameters()->numpag;
+        }
+        else
+        {
+            $code = 400;
         }
 
-        $response = new Response($code, null, $filasAfectadas, $request->getAccept());
+        $libro = new LibroModel($codigo, $titulo, $numpag);
+
+        LibroHandlerModel::putLibro($libro, $id);
+
+        $response = new Response($code, null, null, $request->getAccept());
+
         $response->generate();
 
     }

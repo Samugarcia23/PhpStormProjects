@@ -111,7 +111,9 @@ class LibroHandlerModel
             $prep_query = $db_connection->prepare($query);
             $prep_query->bind_param('i', $id);
 
-            $filasAfectadas = $prep_query->execute();
+            $prep_query->execute();
+
+            $filasAfectadas = $prep_query->affected_rows;
 
             $db_connection->close();
 
@@ -120,34 +122,53 @@ class LibroHandlerModel
         return $filasAfectadas;
     }
 
-    public static function putLibro($id){
+    public static function putLibro(LibroModel $libro){
 
-        $filasAfectadas = 0;
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
-        $valid = self::isValid($id);
+        $query = "Update libros SET titulo=?,numpag=? WHERE codigo=?";
 
-        if ($valid === true){
+        $prep_query = $db_connection->prepare($query);
 
-            $query = "UPDATE  " . \ConstantesDB\ConsLibrosModel::TABLE_NAME;
+        $id = $libro->getCodigo();
+        $numpag = $libro->getNumpag();
+        $titulo = $libro->getTitulo();
 
-            $query = $query . " SET " . \ConstantesDB\ConsLibrosModel::COD . " = ? , " . \ConstantesDB\ConsLibrosModel::TITULO . " = ? , " . \ConstantesDB\ConsLibrosModel::PAGS . " = ? ";
+        $prep_query->bind_param('sii', $titulo, $numpag, $id);
+        $prep_query->execute();
 
-            $query = $query . " WHERE " . \ConstantesDB\ConsLibrosModel::COD . " = ?";
+        $db_connection->close();
 
-            $prep_query = $db_connection->prepare($query);
-            $prep_query->bind_param('ssis', $id, $tit);
+        return $prep_query->affected_rows;
 
-            $filasAfectadas = $prep_query->execute();
-
-            $db_connection->close();
-
-        }
-
-        return $filasAfectadas;
     }
 
+    /*
+     * Busquedas especificas (query)
+     *
+     * else if(isset($query_string['minpag'])&&isset($query_string['maxpag']))
+            {
+                $query="SELECT " . \ConstantesDB\ConsLibrosModel::COD . ","
+                    . \ConstantesDB\ConsLibrosModel::TITULO . ","
+                    . \ConstantesDB\ConsLibrosModel::PAGS . " FROM " . \ConstantesDB\ConsLibrosModel::TABLE_NAME." WHERE "
+                    .\ConstantesDB\ConsLibrosModel::PAGS . ">=? and ".\ConstantesDB\ConsLibrosModel::PAGS."<=?";
+            }
+            else if(isset($query_string['minpag'])&&!isset($query_string['maxpag']))
+            {
+                $query="SELECT " . \ConstantesDB\ConsLibrosModel::COD . ","
+                    . \ConstantesDB\ConsLibrosModel::TITULO . ","
+                    . \ConstantesDB\ConsLibrosModel::PAGS . " FROM " . \ConstantesDB\ConsLibrosModel::TABLE_NAME." WHERE "
+                    .\ConstantesDB\ConsLibrosModel::PAGS . ">=?";
+            }
+            else if(!isset($query_string['minpag'])&&isset($query_string['maxpag']))
+            {
+                $query="SELECT " . \ConstantesDB\ConsLibrosModel::COD . ","
+                    . \ConstantesDB\ConsLibrosModel::TITULO . ","
+                    . \ConstantesDB\ConsLibrosModel::PAGS . " FROM " . \ConstantesDB\ConsLibrosModel::TABLE_NAME." WHERE "
+                    .\ConstantesDB\ConsLibrosModel::PAGS . "<=?";
+            }
+     */
 
 
     //returns true if $id is a valid id for a book
