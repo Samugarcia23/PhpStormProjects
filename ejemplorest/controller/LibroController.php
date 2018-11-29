@@ -95,7 +95,6 @@ class LibroController extends Controller
 
     public function managePutVerb(Request $request)
     {
-        $id = null;
         $response = null;
         $code = null;
         $libro = null;
@@ -103,23 +102,15 @@ class LibroController extends Controller
         $numpag = null;
         $titulo = null;
 
-        if (isset($request->getUrlElements()[2])) {
-            $id = $request->getUrlElements()[2];
-        }
+        $libro = $request->getBodyParameters();
 
-        if ($request->getBodyParameters() != null) {
-            $titulo = $request->getBodyParameters()->titulo;
-            $codigo = $request->getBodyParameters()->codigo;
-            $numpag = $request->getBodyParameters()->numpag;
-        }
-        else
-        {
-            $code = 400;
-        }
+        $filasAfectadas = LibroHandlerModel::putLibro($libro);
 
-        $libro = new LibroModel($codigo, $titulo, $numpag);
-
-        LibroHandlerModel::putLibro($libro, $id);
+        if ($filasAfectadas == 1){
+            $code = 200;
+        }else{
+            $code = 404;
+        }
 
         $response = new Response($code, null, null, $request->getAccept());
 

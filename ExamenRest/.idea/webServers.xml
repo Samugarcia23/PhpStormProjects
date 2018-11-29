@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="39b91293-2fd2-4714-809e-e1d61c6c7160" name="examen.api" url="http://examen.api:8080">
+        <fileTransfer host="127.0.0.1" port="2222" rootFolder="/var/www/examen.api" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="2222" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

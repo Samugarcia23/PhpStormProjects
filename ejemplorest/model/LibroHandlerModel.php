@@ -62,15 +62,10 @@ class LibroHandlerModel
                 $listaLibros[] = $libro;
             }
 
-//            $result = $prep_query->get_result();
-//            for ($i = 0; $row = $result->fetch_object(LibroModel::class); $i++) {
-//
-//                $listaLibros[$i] = $row;
-//            }
         }
         $db_connection->close();
 
-        return $listaLibros;
+        return sizeof($listaLibros) == 1 ? $listaLibros[0] : $listaLibros;
     }
 
     public static function postLibro($libro){
@@ -122,7 +117,7 @@ class LibroHandlerModel
         return $filasAfectadas;
     }
 
-    public static function putLibro(LibroModel $libro){
+    public static function putLibro($libro){
 
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
@@ -131,9 +126,9 @@ class LibroHandlerModel
 
         $prep_query = $db_connection->prepare($query);
 
-        $id = $libro->getCodigo();
-        $numpag = $libro->getNumpag();
-        $titulo = $libro->getTitulo();
+        $id = $libro->codigo;
+        $numpag = $libro->numpag;
+        $titulo = $libro->titulo;
 
         $prep_query->bind_param('sii', $titulo, $numpag, $id);
         $prep_query->execute();
