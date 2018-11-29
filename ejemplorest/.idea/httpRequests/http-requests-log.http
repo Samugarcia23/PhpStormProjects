@@ -1,3 +1,19 @@
+GET http://libros.api:8080/libro?minpag=500
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+<> 2018-11-29T073838.200.html
+
+###
+
+GET http://libros.api:8080/libro?minpag=500
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+###
+
 PUT http://libros.api:8080/libro
 Accept: */*
 Cache-Control: no-cache

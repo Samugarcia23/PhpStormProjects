@@ -19,7 +19,7 @@ class LibroController extends Controller
         }
 
 
-        $listaLibros = LibroHandlerModel::getLibro($id);
+        $listaLibros = LibroHandlerModel::getLibro($id, $request->getQueryString());
 
         if ($listaLibros != null) {
             $code = '200';
