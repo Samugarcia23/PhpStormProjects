@@ -24,10 +24,10 @@ public interface LibroInterface {
 	@PUT("libro")
 	Call<Void> putLibro(@Body Libro libro);
 
-	/**@GET("/libro")
-	Call<List<Libro>> getMinMaxPagLibro(@Query("minpag") int minpag, @Query("maxpag") int maxpag);*/
-
 	@GET("/libro")
-	Call<List<Libro>> getMinMaxPagLibro(@Query("maxpag") int maxpag);
+	Call<List<Libro>> getMinMaxPagLibro(@Query("minpag") int minpag, @Query("maxpag") int maxpag);
+
+	/*@GET("/libro")
+	Call<List<Libro>> getMinMaxPagLibro(@Query("maxpag") int maxpag);*/
 
 }

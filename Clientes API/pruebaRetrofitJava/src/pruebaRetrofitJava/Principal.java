@@ -116,11 +116,11 @@ public class Principal {
 
 				case 6:
 					System.out.println("Introduce el maximo de paginas: ");
-					//System.out.println("Minimo: ");
-					//minpag = sc.nextInt();
+					System.out.println("Minimo: ");
+					minpag = sc.nextInt();
 					System.out.println("Maximo: ");
 					maxpag = sc.nextInt();
-					libroInter.getMinMaxPagLibro(maxpag).enqueue(libroMinMaxListCallback);
+					libroInter.getMinMaxPagLibro(minpag, maxpag).enqueue(libroMinMaxListCallback);
 					break;
 			}
 
