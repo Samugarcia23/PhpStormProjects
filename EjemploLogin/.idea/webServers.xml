@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="a58d2b1c-a7e5-49b9-a2b5-8b67bffbf1ef" name="ejemploLogin.api" url="http://ejemploLogin.api:8080">
+        <fileTransfer host="127.0.0.1" port="2222" rootFolder="/var/www/ejemploLogin.api" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="2222" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
