@@ -26,10 +26,14 @@ else {
 
     $password = password_hash($password, PASSWORD_BCRYPT);
     if($user != "" && $password != ""){
-    if ($prep_query->execute())
-        echo "¡El usuario " . $user . " se ha introducido correctamente!";
-    else
-        echo "Error, intentelo de nuevo";
+        if ($prep_query->execute()){
+            echo "¡El usuario " . $user . " se ha introducido correctamente!";
+            echo "<br><a href=\"/index.html\">Volver a inicio</a>";
+        }
+        else {
+            echo "Error, intentelo de nuevo";
+            echo "<br><a href=\"/index.html\">Volver a inicio</a>";
+        }
     }
     else
         echo "Error, No puede haber campos vacios";
